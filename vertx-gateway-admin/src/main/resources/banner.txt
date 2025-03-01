@@ -1,0 +1,10 @@
+欢迎使用 VERTX GATEWAY , 程序开始启动...
+${AnsiColor.BLUE} ___      ___ _______   ________  _________   ___    ___      ________  ________  _________  _______   ___       __   ________      ___    ___
+${AnsiColor.BLUE}|\  \    /  /|\  ___ \ |\   __  \|\___   ___\|\  \  /  /|    |\   ____\|\   __  \|\___   ___\\  ___ \ |\  \     |\  \|\   __  \    |\  \  /  /|
+${AnsiColor.BLUE}\ \  \  /  / | \   __/|\ \  \|\  \|___ \  \_|\ \  \/  / /    \ \  \___|\ \  \|\  \|___ \  \_\ \   __/|\ \  \    \ \  \ \  \|\  \   \ \  \/  / /
+${AnsiColor.BLUE} \ \  \/  / / \ \  \_|/_\ \   _  _\   \ \  \  \ \    / /      \ \  \  __\ \   __  \   \ \  \ \ \  \_|/_\ \  \  __\ \  \ \   __  \   \ \    / /
+${AnsiColor.BLUE}  \ \    / /   \ \  \_|\ \ \  \\  \|   \ \  \  /     \/        \ \  \|\  \ \  \ \  \   \ \  \ \ \  \_|\ \ \  \|\__\_\  \ \  \ \  \   \/  /  /
+${AnsiColor.BLUE}   \ \__/ /     \ \_______\ \__\\ _\    \ \__\/  \   \         \ \_______\ \__\ \__\   \ \__\ \ \_______\ \____________\ \__\ \__\__/  / /
+${AnsiColor.BLUE}    \|__|/       \|_______|\|__|\|__|    \|__/__/ /|__\         \|_______|\|__|\|__|    \|__|  \|_______|\|____________|\|__|\|__|\___/ /
+${AnsiColor.BLUE}                                             |__|/  |__|                                                                          \|___|/
+${AnsiColor.DEFAULT}项目名称:${AnsiColor.BLUE}${spring.application.name}${AnsiColor.DEFAULT}  作者:${AnsiColor.BLUE}StudiousTiger  ${AnsiColor.DEFAULT}环境:${AnsiColor.BLUE}${spring.profiles.active}  ${AnsiColor.DEFAULT}端口:${AnsiColor.BLUE}${server.port}${AnsiColor.DEFAULT}
