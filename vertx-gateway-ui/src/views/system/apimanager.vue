@@ -392,8 +392,8 @@ const changePageSize = (pageSize: number) => {
 </script>
 
 <template>
-  <ResizeBox :initialWidth="260" :minWidth="260" :maxWidth="350">
-    <template #left>
+  <ResizeBox :initial-size="200" :min-size="200" :max-size="300">
+    <template #first>
       <div class="resize-left-box">
         <SearchTree
           :data="menuTreeList"
@@ -403,7 +403,7 @@ const changePageSize = (pageSize: number) => {
         ></SearchTree>
       </div>
     </template>
-    <template #right>
+    <template #second>
       <div class="resize-right-box">
         <!-- 查询区域-->
         <div class="search-box" ref="searchBox">

@@ -187,8 +187,8 @@ const handleDelete = (rows: any) => {
 </script>
 
 <template>
-  <ResizeBox :initialWidth="200" :minWidth="200" :maxWidth="350">
-    <template #left>
+  <ResizeBox :initial-size="200" :min-size="200" :max-size="300">
+    <template #first>
       <div class="resize-left-box">
         <SearchTree
           :data="appList"
@@ -198,7 +198,7 @@ const handleDelete = (rows: any) => {
         ></SearchTree>
       </div>
     </template>
-    <template #right>
+    <template #second>
       <div class="resize-right-box">
         <!-- 查询区域-->
         <div class="search-box" ref="searchBox">
