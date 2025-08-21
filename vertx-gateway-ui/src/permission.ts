@@ -1,6 +1,5 @@
 import router from "@/router";
 import { getToken } from "./utils/auth";
-import setting from "./config/setting";
 import NProgress from "nprogress";
 import "nprogress/nprogress.css";
 NProgress.configure({ easing: "ease", speed: 150, showSpinner: false });
@@ -9,6 +8,7 @@ import cache from "./utils/cache";
 import { getButtonPermissions } from "./api/role";
 import { isEmpty } from "./utils/tools";
 import type { RouteLocationNormalized } from "vue-router";
+import setting from '@/config/setting'
 
 let userMenus:any = null
 
@@ -38,11 +38,9 @@ router.beforeEach(async (to, from, next) => {
     if (setting.whiteList.indexOf(to.path) !== -1) {
       next();
     } else {
-      if (to.fullPath.length > 1) {
-        next(`/login?redirect=${to.fullPath}`);
-      } else {
-        next("/login");
-      }
+      next({
+        path: '/login'
+      });
       NProgress.done();
     }
   }

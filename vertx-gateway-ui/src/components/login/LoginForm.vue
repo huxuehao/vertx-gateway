@@ -2,17 +2,11 @@
 import { type FormInstance } from "element-plus";
 import { reactive, ref, watch } from "vue";
 import { useUserStore } from "@/stores/user";
-import { useRoute } from 'vue-router';
 import DragVerify from "./DragVerify.vue";
+import setting from '@/config/setting'
 
-const route = useRoute()
 const userStore = useUserStore();
 
-const redirect = ref<any>(undefined);
-
-watch(route, (newRoute) => {
-    redirect.value = newRoute.query && newRoute.query.redirect;
-}, { immediate: true });
 
 // 密码登录对象
 let passwordForm = reactive({
@@ -58,7 +52,7 @@ const handelSubmit = (formEl: FormInstance | undefined) => {
           password: passwordForm.password,
         })
         .then(() => {
-          window.open(decodeURIComponent(redirect.value || "/"), '_self')
+          window.open(`/${setting.baseUrl}/#/`, '_self')
         })
     }
   });

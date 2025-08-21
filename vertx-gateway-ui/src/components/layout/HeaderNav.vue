@@ -2,11 +2,9 @@
 import setting from "@/config/setting";
 import { ElMessageBox } from "element-plus";
 import { useUserStore } from "@/stores/user";
-import { useRoute } from "vue-router";
 import router from "@/router/index";
 
 const userStore = useUserStore();
-const route = useRoute();
 
 const goBackHome = () => {
   router.push({ path: setting.homePath });
@@ -19,7 +17,7 @@ const handelLogout = () => {
     type: "warning",
   }).then(() => {
     userStore.doLogout(userStore.userInfo.id).then(() => {
-      window.open(`/login?redirect=${encodeURIComponent(route.fullPath)}`, '_self')
+      window.open(`${setting.baseUrl}#/login`, '_self')
     })
   });
 };

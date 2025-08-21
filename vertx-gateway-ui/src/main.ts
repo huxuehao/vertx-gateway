@@ -19,11 +19,6 @@ dynamicRouter.dynamicRouteGen()
 
 const app = createApp(App);
 
-// import SpeechNotifyPlugin from './plugins/speech-notify-plugin';
-// import { initWebSocket } from './plugins/websocket-service';
-// app.use(SpeechNotifyPlugin);
-// initWebSocket(app); // 初始化WebSocket连接
-
 app.use(createPinia());
 app.use(router);
 

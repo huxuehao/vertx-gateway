@@ -18,13 +18,13 @@ public class InterceptorConfig extends WebMvcConfigurationSupport {
         /* 拦截所有的请求，通过请求映射到的方法上的注解进行判断是否需要权限验证 */
         registry.addInterceptor(new AuthInterceptor())
                 .addPathPatterns("/**")
-                .excludePathPatterns("/op-sql/index.html");
+                .excludePathPatterns("/web/index.html");
     }
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        /* 静态资源处理器，将/ui/**请求指引到classpath:/ui/下 */
-        registry.addResourceHandler("/ui/**").addResourceLocations("classpath:/ui/");
+        /* 静态资源处理器，将/web/**请求指引到classpath:/web/下 */
+        registry.addResourceHandler("/web/**").addResourceLocations("classpath:/web/");
     }
 
     @Override

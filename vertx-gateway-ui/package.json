@@ -5,10 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "run-p type-check \"build-only {@}\" --",
-    "preview": "vite preview",
-    "build-only": "vite build",
-    "type-check": "vue-tsc --build"
+    "build": "vue-tsc && vite build",
+    "build:backend": "vue-tsc && vite build --mode production",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.18.6",

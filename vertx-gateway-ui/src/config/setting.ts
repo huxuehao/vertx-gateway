@@ -10,4 +10,5 @@ export default {
   whiteList: [
     "/login"
   ],
+  baseUrl: 'web/index.html'
 };

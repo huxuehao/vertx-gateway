@@ -106,12 +106,12 @@ instance.interceptors.response.use(
         } catch (err) {
           removeToken();
           removeRefreshToken();
-          window.location.href = "/login";
+          window.location.href = `/${setting.baseUrl}/#/login`;
           return Promise.reject(err);
         }
       } else {
         removeToken()
-        window.location.href = "/login";
+        window.location.href = `/${setting.baseUrl}/#/login`;
         return Promise.reject(error);
       }
     }

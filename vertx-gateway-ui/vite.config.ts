@@ -48,12 +48,25 @@ export default defineConfig(({ mode, command }) => {
         }
       }
     },
+    // 重要：设置公共路径，确保资源从/web/路径加载
+    base: `/web/`,
+    // 构建配置
+    build: {
+      outDir: 'dist',
+      assetsDir: '', // 清空assetsDir，让资源直接输出到dist根目录
+      rollupOptions: {
+        output: {
+          chunkFileNames: 'js/[name]-[hash].js',
+          entryFileNames: 'js/[name]-[hash].js',
+          assetFileNames: '[ext]/[name]-[hash].[ext]'
+        }
+      }
+    },
     css: {
       preprocessorOptions: {
         scss: {
           javascriptEnabled: true,
         },
-  
       }
     }
   }

@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { useUserStore } from "@/stores/user";
-import { useRoute } from "vue-router";
 import { computed, ref } from "vue";
 import { ElMessageBox } from "element-plus";
 import UserInfoForm from "@/components/user/UserInfoForm.vue";
 import RepasswordForm from "@/components/user/RepasswordForm.vue";
+import setting from '@/config/setting'
 
 const userStore = useUserStore();
 let userInfo = computed(() => {
@@ -22,7 +22,6 @@ const openRepassword = () => {
   repasswordVisible.value = true
 };
 // 退出登录
-const route = useRoute();
 const handelLogout = () => {
   ElMessageBox.confirm("确认退出当前系统?", "提示", {
     confirmButtonText: "确认",
@@ -30,7 +29,7 @@ const handelLogout = () => {
     type: "warning",
   }).then(() => {
     userStore.doLogout(userStore.userInfo.id).then(() => {
-      window.open(`/login?redirect=${encodeURIComponent(route.fullPath)}`, '_self')
+      window.open(`/${setting.baseUrl}/#/login`, '_self')
     })
   });
 };
@@ -42,11 +41,11 @@ const handelLogout = () => {
     popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding:20px;"
   >
     <template #reference>
-      <el-avatar src="/src/assets/images/user.png" size="40" />
+      <el-avatar />
     </template>
     <template #default>
       <div>
-        <el-avatar :size="60" src="/src/assets/images/user.png" style="margin-bottom: 8px" />
+        <el-avatar style="margin-bottom: 8px" />
         <div>
           <el-row>
             <el-col :span="12">
@@ -55,11 +54,6 @@ const handelLogout = () => {
                 <el-icon v-if="userInfo.gender === 1" color="#3C95F8" size="15"><Male /></el-icon>
                 <el-icon v-else-if="userInfo.gender === 0"color="#EC407A" size="15"><Female /></el-icon>
               </p>
-            </el-col>
-            <el-col :span="12" style="text-align: right;">
-              <el-link type="primary" href="https://gitee.com/studioustiger" target="_blank" title="我的Gitee">Gitee</el-link>
-              <span style="display: inline-block;width: 10px;"></span>
-              <el-link type="success" href="https://blog.csdn.net/m0_45067620" target="_blank" title="我的CSND">CSND</el-link>
             </el-col>
           </el-row>
           <p style="margin: 0; font-size: 14px; color: var(--el-color-info)">

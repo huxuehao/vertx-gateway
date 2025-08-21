@@ -1,8 +1,9 @@
-import { createRouter, createWebHistory } from "vue-router";
+import { createRouter, createWebHashHistory } from "vue-router";
 import Layout from "@/layout/Index.vue"
+import setting from '@/config/setting'
 
 const router = createRouter({
-  history: createWebHistory(import.meta.env.BASE_URL),
+  history: createWebHashHistory('/'+setting.baseUrl+"/"),
   routes: [
     {
       path: "/login",
