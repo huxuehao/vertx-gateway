@@ -1,5 +1,5 @@
 export default {
-  systemName: "阡陌网关",
+  systemName: "Vertx Gateway",
   homePath: "/home",
   repeatReqInterval: 500, // 重复请求时间间隔（毫秒）
   tokenHeader: "Authorization",
