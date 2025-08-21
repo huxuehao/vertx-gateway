@@ -263,10 +263,10 @@ const handleDelete = (rows: any) => {
         <!-- 列表区域 -->
         <div
           class="data-list"
-          :style="[{ height: 'calc(100vh - 200px - ' + tHeight + 'px)' }]"
+          :style="[{ height: 'calc(100% - var(--table-hg-150) - ' + tHeight + 'px)' }]"
         >
           <el-table
-            :stripe="false"
+            :stripe="true"
             :data="dataList"
             :header-cell-style="{
               backgroundColor: '#F5F7FA',

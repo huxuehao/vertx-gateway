@@ -1,6 +1,7 @@
 // 定义主题色
-$primary-color: #2d96ff;
+$primary-color: #458CFB;
 $dialog-header-bg: #F9FBFD;
+$common-radius: 5px;
 
 .drawer-none-padding {
   position: relative;
@@ -20,9 +21,13 @@ $dialog-header-bg: #F9FBFD;
 
 // 全局样式覆盖
 .el {
+  &-link {
+    margin-right: 10px;
+  }
   // 按钮
   &-button {
-    border-radius: 2px;
+    border-radius: 3px;
+    font-family: "AlimamaFangYuan", -apple-system, BlinkMacSystemFont, "Segoe UI",Microsoft YaHei, "Helvetica Neue", Arial, "Noto Sans", sans-serif,"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     &--primary {
       background-color: $primary-color;
       border-color: $primary-color;
@@ -31,7 +36,7 @@ $dialog-header-bg: #F9FBFD;
       &:hover {
         background-color: darken($primary-color, 5%);
         border-color: darken($primary-color, 5%);
-        color: #fff;
+        // color: #fff;
       }
     }
   }
@@ -43,7 +48,7 @@ $dialog-header-bg: #F9FBFD;
       background-color: #dbedff;
       padding-top: 3px;
       padding-bottom: 3px;
-      color: #2d96ff;
+      color: #22A5F7;
       border-radius: 3px;
     }
   }
@@ -56,7 +61,8 @@ $dialog-header-bg: #F9FBFD;
     &__suffix,
     &__prefix-inner,
     &__suffix-inner {
-      border-radius: 2px !important;
+      border-radius: 5px !important;
+      font-family: "AlimamaFangYuan", -apple-system, BlinkMacSystemFont, "Segoe UI",Microsoft YaHei, "Helvetica Neue", Arial, "Noto Sans", sans-serif,"Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     }
     
     &.el-input--small {
@@ -66,7 +72,7 @@ $dialog-header-bg: #F9FBFD;
       .el-input__suffix,
       .el-input__prefix-inner,
       .el-input__suffix-inner {
-        border-radius: 2px !important;
+        border-radius: 5px !important;
         height: 26px;
       }
     }
@@ -78,7 +84,7 @@ $dialog-header-bg: #F9FBFD;
       .el-input__suffix,
       .el-input__prefix-inner,
       .el-input__suffix-inner {
-        border-radius: 2px !important;
+        border-radius: 5px !important;
       }
     }
   }
@@ -92,7 +98,7 @@ $dialog-header-bg: #F9FBFD;
     &__input,
     &__tags,
     &__selection {
-      border-radius: 2px !important;
+      border-radius: 5px !important;
     }
 
     &.el-select--small {
@@ -102,7 +108,7 @@ $dialog-header-bg: #F9FBFD;
       .el-select__suffix,
       .el-select__prefix-inner,
       .el-select__suffix-inner {
-        border-radius: 2px !important;
+        border-radius: 5px !important;
         height: 28px;
       }
     }
@@ -110,11 +116,11 @@ $dialog-header-bg: #F9FBFD;
 
   &-textarea {
     &__inner {
-      border-radius: 2px !important;
+      border-radius: 5px !important;
     }
     
     &__wrapper {
-      border-radius: 2px !important;
+      border-radius: 5px !important;
     }
   }
 
@@ -124,15 +130,15 @@ $dialog-header-bg: #F9FBFD;
 
   // 对话框
   &-dialog {
-    border-radius: 2px;
+    border-radius: 5px;
     padding: 0 !important;
     
     &__header {
-      background: $dialog-header-bg;
+      // background: $dialog-header-bg;
       padding: 0;
       margin: 0;
-      border-radius: 2px;
-      border-bottom: 1px solid #ebeef5;
+      border-radius: 5px;
+      // border-bottom: 1px solid #ebeef5;
       
       .el-dialog__title {
         padding: 12px 20px;
@@ -154,12 +160,12 @@ $dialog-header-bg: #F9FBFD;
 
   &-drawer {
     &__header {
-      background: $dialog-header-bg;
+      // background: $dialog-header-bg;
       padding: 15px 20px;
       margin: 0;
       padding: 8px 20px;
-      border-radius: 2px;
-      border-bottom: 1px solid #ebeef5;
+      border-radius: 5px;
+      // border-bottom: 1px solid #ebeef5;
     }
     &__title {
       color: #303133;
@@ -170,12 +176,17 @@ $dialog-header-bg: #F9FBFD;
 
   // 菜单
   &-menu {
-    border-radius: 2px;
+    border-radius: 5px;
+    background-color: transparent;
   }
 
   // 表格
   &-table {
-    border-radius: 2px;
+    border-radius: 5px;
+    --el-table-border-color: none;
+    &__header {
+      font-size: 14px;
+    }
     
     th {
       background-color: #f5f7fa;
@@ -191,19 +202,20 @@ $dialog-header-bg: #F9FBFD;
 
   // 卡片
   &-card {
-    border-radius: 2px;
+    border-radius: 5px;
   }
 
   // 标签
   &-tag {
-    border-radius: 2px !important;
+    border-radius: 5px !important;
+    border: none;
     
     &--small {
-      border-radius: 2px !important;
+      border-radius: 5px !important;
     }
     
     &--large {
-      border-radius: 2px !important;
+      border-radius: 5px !important;
     }
   }
 
@@ -212,23 +224,23 @@ $dialog-header-bg: #F9FBFD;
   &-alert,
   &-confirm {
     &__wrapper {
-      border-radius: 2px !important;
+      border-radius: 5px !important;
     }
     
     &__content {
-      border-radius: 2px !important;
+      border-radius: 5px !important;
     }
     
     &__btns {
-      border-radius: 2px !important;
+      border-radius: 5px !important;
     }
   }
 
   // 消息提示
   &-message {
-    border-radius: 2px !important;
+    border-radius: 5px !important;
     &-box {
-      --el-messagebox-border-radius: 2px;
+      --el-messagebox-border-radius: 5px;
     }
     &__content {
       color: #303133 !important;
@@ -260,6 +272,9 @@ $dialog-header-bg: #F9FBFD;
     &-item {
       &__error {
         padding-top: 4px;
+      }
+      &--label-top .el-form-item__label {
+        margin-bottom: 5px;
       }
     }
   }

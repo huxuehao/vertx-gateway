@@ -5,10 +5,10 @@
       <img src="../assets/images/404/meteor.svg" class="meteor">
       <p class="title">Oh no!!</p>
       <p class="subtitle">
-        哎呀！<br>您访问的页面不存在。
+        <!-- 哎呀！<br>您访问的页面不存在。 -->
       </p>
       <div align="center">
-          <a class="btn-back" href="/">返回首页</a>
+          <a class="btn-back" href="/">返回</a>
       </div>
       <img src="../assets/images/404/astronaut.svg" class="astronaut">
       <img src="../assets/images/404/spaceship.svg" class="spaceship">
@@ -34,7 +34,8 @@
 }
 
 .body {
-  background-image: url("../assets/images/404/star.svg"), linear-gradient(to bottom, #05007A, #4D007D);
+  background-image: url("../assets/images/404/star.svg") , linear-gradient(to bottom, #1a1d23, #494d55);
+  background-color: var(--global-bg-color);
   height: 100vh;
   margin: 0;
   background-attachment: fixed;
@@ -74,7 +75,7 @@
 }
 
 .title {
-  color: white;
+  color: #CFD8DC;
   font-family: "Nunito", sans-serif;
   font-weight: 600;
   text-align: center;
@@ -89,7 +90,7 @@
 }
 
 .subtitle {
-  color: white;
+  color: #CFD8DC;
   font-family: "Nunito", sans-serif;
   font-weight: 400;
   text-align: center;
@@ -99,8 +100,8 @@
 }
 
 .btn-back {
-  border: 1px solid white;
-  color: white;
+  border: 1px solid rgb(131, 131, 131);
+  color: #CFD8DC;
   font-size: 2vmin;
   padding: 1vmin 1.5vmin;
   font-family: "Nunito", sans-serif;
@@ -109,8 +110,7 @@
 }
 
 .btn-back:hover {
-  background: white;
-  color: #4D007D;
+  background: #272d30;
 }
 
 @media (max-width: 480px) and (min-width: 320px) {

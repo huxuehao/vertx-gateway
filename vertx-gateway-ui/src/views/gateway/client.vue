@@ -207,7 +207,7 @@ const handleEdit = (row: any) => {
         class="query-form"
         :model="queryParams"
         :inline="true"
-        label-width="70px"
+        label-width="90px"
       >
         <el-form-item label="Client名称" prop="clientName" class="form-item">
           <el-input
@@ -282,10 +282,10 @@ const handleEdit = (row: any) => {
     <!-- 列表区域 -->
     <div
       class="data-list"
-      :style="[{ height: 'calc(100vh - 180px - ' + tHeight + 'px)' }]"
+      :style="[{ height: 'calc(100% - var(--table-hg-150) - ' + tHeight + 'px)' }]"
     >
       <el-table
-        :stripe="false"
+        :stripe="true"
         :data="dataList"
         :header-cell-style="{
           backgroundColor: '#F5F7FA',
@@ -411,9 +411,4 @@ const handleEdit = (row: any) => {
 
 <style lang="scss" scoped>
 @use "/src/style/views/index.scss" as *;
-.search-box,
-.button-box,
-.data-list {
-  margin-left: 10px;
-}
 </style>

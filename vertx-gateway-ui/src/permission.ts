@@ -8,6 +8,7 @@ import { useMenusStore } from '@/stores/menus'
 import cache from "./utils/cache";
 import { getButtonPermissions } from "./api/role";
 import { isEmpty } from "./utils/tools";
+import type { RouteLocationNormalized } from "vue-router";
 
 let userMenus:any = null
 
@@ -49,4 +50,23 @@ router.beforeEach(async (to, from, next) => {
 
 router.afterEach((to, from) => {
   NProgress.done();
+  setPageTitle(to);
 });
+
+
+/**
+ * 设置页面标题，根据路由元信息和系统信息拼接标题
+ * @param to 当前路由对象
+ */
+export const setPageTitle = (to: RouteLocationNormalized): void => {
+  const { name } = to.meta
+  if (name) {
+    setTimeout(() => {
+      document.title = `${name} - ${setting.systemName}`
+    }, 150)
+  } else {
+    setTimeout(() => {
+      document.title = `${String(to.name)} - ${setting.systemName}`
+    }, 150)
+  }
+}

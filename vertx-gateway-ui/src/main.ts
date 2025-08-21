@@ -1,12 +1,14 @@
 import { createApp } from "vue";
 import { createPinia } from "pinia";
-
 import App from "./App.vue";
+import "./style/global.scss";
+
 import ElementPlus from "element-plus";
 import "element-plus/dist/index.css";
 import "./style/element/override.scss"; // 添加自定义样式
 import zhCn from "element-plus/es/locale/lang/zh-cn";
 import * as ElementPlusIconsVue from "@element-plus/icons-vue";
+
 import "./permission";
 import router from "./router";
 import { getUserPermissions } from "./utils/tools"
@@ -17,16 +19,16 @@ dynamicRouter.dynamicRouteGen()
 
 const app = createApp(App);
 
-import SpeechNotifyPlugin from './plugins/speech-notify-plugin';
-import { initWebSocket } from './plugins/websocket-service';
-app.use(SpeechNotifyPlugin);
-initWebSocket(app); // 初始化WebSocket连接
+// import SpeechNotifyPlugin from './plugins/speech-notify-plugin';
+// import { initWebSocket } from './plugins/websocket-service';
+// app.use(SpeechNotifyPlugin);
+// initWebSocket(app); // 初始化WebSocket连接
 
 app.use(createPinia());
 app.use(router);
 
 app.use(ElementPlus, {
-  size: "small",
+  // size: "small",
   zIndex: 3000,
   locale: zhCn,
 });

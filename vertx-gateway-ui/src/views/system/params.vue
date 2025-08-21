@@ -227,9 +227,9 @@ const handleEdit = (row: any) => {
       </el-col>
     </el-row>
     <!-- 列表区域 -->
-    <div class="data-list" :style="[{ height: 'calc(100vh - 180px)' }]">
+    <div class="data-list" :style="[{ height: 'calc(100vh - 165px)' }]">
       <el-table
-        :stripe="false"
+        :stripe="true"
         :data="dataList"
         :header-cell-style="{
           backgroundColor: '#F5F7FA',
@@ -256,7 +256,7 @@ const handleEdit = (row: any) => {
         <el-table-column label="Key" prop="paramKey"> </el-table-column>
         <el-table-column label="Value" prop="paramValue" show-overflow-tooltip>
         </el-table-column>
-        <el-table-column label="操作" width="200" align="center" fixed="right">
+        <el-table-column label="操作" width="240" align="center" fixed="right">
           <template #default="scope">
             <el-button
               v-permission="'params_view'"
@@ -375,11 +375,6 @@ const handleEdit = (row: any) => {
 <style lang="scss" scoped>
 @use "/src/style/views/index.scss" as *;
 
-.search-box,
-.button-box,
-.data-list {
-  margin-left: 10px;
-}
 .button-box {
   margin-top: 10px;
   margin-bottom: 5px;

@@ -483,10 +483,10 @@ const clickRemoveParams = (index: number) => {
     <!-- 列表区域 -->
     <div
       class="data-list"
-      :style="[{ height: 'calc(100vh - 150px - ' + tHeight + 'px)' }]"
+      :style="[{ height: 'calc(100% - var(--table-hg-150) - ' + tHeight + 'px + 38px)' }]"
     >
       <el-table
-        :stripe="false"
+        :stripe="true"
         :data="dataList"
         :header-cell-style="{
           backgroundColor: '#F5F7FA',
@@ -561,7 +561,7 @@ const clickRemoveParams = (index: number) => {
           align="center"
           width="100"
         ></el-table-column>
-        <el-table-column label="操作" width="280" align="center" fixed="right">
+        <el-table-column label="操作" width="320" align="center" fixed="right">
           <template #default="scope">
             <el-button
               v-permission="'menu_view'"
@@ -860,10 +860,4 @@ const clickRemoveParams = (index: number) => {
 
 <style lang="scss" scoped>
 @use "/src/style/views/index.scss" as *;
-
-.search-box,
-.button-box,
-.data-list {
-  margin-left: 10px;
-}
 </style>

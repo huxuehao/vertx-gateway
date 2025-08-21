@@ -55,7 +55,7 @@ const filterNode = (value: string, data: any) => {
     <el-input
       v-model="keyWord"
       class="etm-search-input"
-      placeholder="输入关键字进行过滤"
+      placeholder="请输入关键字"
     >
       <template #suffix>
         <el-icon class="el-input__icon">
@@ -67,6 +67,7 @@ const filterNode = (value: string, data: any) => {
       <el-tree
         :data="data"
         :props="prop"
+        check-on-click-node
         style="padding: 0 10px"
         :expand-on-click-node="false"
         @node-click="handleNodeClick"
@@ -112,6 +113,10 @@ const filterNode = (value: string, data: any) => {
 .etm-search-input {
   // height: 50px;
   padding: 0 10px 10px 10px;
-  background-color: white;
+  // background-color: white;
+}
+::v-deep .el-tree {
+  background-color: transparent;
+  --el-tree-node-hover-bg-color: var(--global-bg-color);
 }
 </style>
