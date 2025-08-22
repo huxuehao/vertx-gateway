@@ -41,19 +41,24 @@ const handelLogout = () => {
     popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding:20px;"
   >
     <template #reference>
-      <el-avatar />
+      <el-avatar src="/src/assets/images/user.png" />
     </template>
     <template #default>
       <div>
-        <el-avatar style="margin-bottom: 8px" />
+        <el-avatar src="/src/assets/images/user.png" style="margin-bottom: 8px" />
         <div>
           <el-row>
             <el-col :span="12">
               <p style="margin: 0; font-weight: 500" >
-                {{ userInfo.name }} 
+                {{ userInfo.name }}
                 <el-icon v-if="userInfo.gender === 1" color="#3C95F8" size="15"><Male /></el-icon>
-                <el-icon v-else-if="userInfo.gender === 0"color="#EC407A" size="15"><Female /></el-icon>
+                <el-icon v-else-if="userInfo.gender === 0" color="#EC407A" size="15"><Female /></el-icon>
               </p>
+            </el-col>
+            <el-col :span="12" style="text-align: right;">
+              <el-link type="primary" href="https://gitee.com/studioustiger" target="_blank" title="我的Gitee">Gitee</el-link>
+              <span style="display: inline-block;width: 10px;"></span>
+              <el-link type="success" href="https://blog.csdn.net/m0_45067620" target="_blank" title="我的CSND">CSND</el-link>
             </el-col>
           </el-row>
           <p style="margin: 0; font-size: 14px; color: var(--el-color-info)">

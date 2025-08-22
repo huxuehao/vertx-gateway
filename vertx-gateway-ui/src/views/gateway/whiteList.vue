@@ -141,8 +141,8 @@ const handleSave = (row: any) => {
       stopBtn.value = false
     })
   }
-  
-  
+
+
 };
 // 点击移除
 const remove = (index: number) => {
@@ -263,7 +263,7 @@ const handleDelete = (rows: any) => {
         <!-- 列表区域 -->
         <div
           class="data-list"
-          :style="[{ height: 'calc(100% - var(--table-hg-150) - ' + tHeight + 'px)' }]"
+          :style="[{ height: 'calc(100% - var(--table-hg-150) - ' + tHeight + 'px + 40px)' }]"
         >
           <el-table
             :stripe="true"

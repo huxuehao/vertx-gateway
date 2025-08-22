@@ -72,7 +72,7 @@ watch(() => route.fullPath, () => {
 <template>
   <div class="bar">
     <div class="logo">
-      <img src="@/assets/logo.png" alt="" width="40px" />
+      <img src="@/assets/logo.png" alt="" width="47px" />
     </div>
     <div style="height: calc(100% - 140px); position: relative;">
       <el-scrollbar height="100%">
@@ -85,7 +85,7 @@ watch(() => route.fullPath, () => {
           @click="handleMenuClick(item)"
         >
           <span class="menu-item-icon-container">
-            <el-icon size="28px" class="menu-item-icon"
+            <el-icon size="32px" class="menu-item-icon"
               ><component :is="item.icon"
             /></el-icon>
           </span>
@@ -106,7 +106,7 @@ watch(() => route.fullPath, () => {
   height: 100%;
   // background-color: #23262E;
   background: linear-gradient(135deg,#23262E -20%, #3a3e48 100%);
-  
+
   .logo,.user_info {
     width: 100%;
     height: 70px;
@@ -155,7 +155,7 @@ watch(() => route.fullPath, () => {
 }
 
 .menu-item-label {
-  font-size: 15px;
+  font-size: 16px;
   width: 32px;
   text-align: center;
   margin-top: 5px;
