@@ -189,7 +189,7 @@ defineExpose({
     :rules="rules"
     :model="config"
     label-position="right"
-    label-width="100px"
+    label-width="120px"
   >
     <div v-show="active === 0">
       <el-row :gutter="0">

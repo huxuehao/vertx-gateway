@@ -239,11 +239,11 @@ defineExpose({
       :rules="rules"
       :model="config"
       label-position="right"
-      label-width="80px">
+      label-width="200px">
     <div v-show="active === 0">
       <el-row :gutter="0">
         <el-col :span="12">
-          <el-form-item label="协议类型" prop="protocol">
+          <el-form-item label="协议类型" prop="protocol" label-width="80px">
             <el-select
               v-model="config.protocol"
               placeholder="请选择协议类型"
@@ -255,7 +255,7 @@ defineExpose({
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="应用端口" prop="port">
+          <el-form-item label="应用端口" prop="port" label-width="80px">
             <el-input-number 
               v-model="config.port"
               placeholder="请填写应用端口"
@@ -410,7 +410,7 @@ defineExpose({
     <div v-show="active === 2">
       <el-row :gutter="0">
         <el-col :span="12">
-          <el-form-item label="后端服务前缀" prop="serverUrlPrefix" label-width="180px">
+          <el-form-item label="后端服务前缀" prop="serverUrlPrefix">
             <template #label>
               <span>后端服务前缀</span>
               <el-popover
@@ -432,7 +432,7 @@ defineExpose({
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="会话Cookie名称" prop="sessionCookieName" label-width="180px">
+          <el-form-item label="会话Cookie名称" prop="sessionCookieName">
             <el-input 
               v-model="config.sessionCookieName"
               placeholder="请填会话Cookie名称"
@@ -444,7 +444,7 @@ defineExpose({
       <el-row :gutter="0">
         
         <el-col :span="12">
-          <el-form-item label="会话超时时间" prop="sessionTimeOut" label-width="180px">
+          <el-form-item label="会话超时时间" prop="sessionTimeOut">
             <el-input 
               v-model="config.sessionTimeOut"
               placeholder="请填写会话超时时间"
@@ -455,7 +455,7 @@ defineExpose({
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="最大ContentLength" prop="contentLength" label-width="180px">
+          <el-form-item label="最大ContentLength" prop="contentLength">
             <el-input 
               v-model="config.contentLength"
               placeholder="请填最大ContentLength"
@@ -468,7 +468,7 @@ defineExpose({
       </el-row>
       <el-row :gutter="0">
         <el-col :span="12">
-          <el-form-item label="客户端连接池数量" prop="maxPoolSize" label-width="180px">
+          <el-form-item label="客户端连接池数量" prop="maxPoolSize">
             <el-input-number
               v-model="config.maxPoolSize"
               placeholder="请填写客户端连接池数量"
@@ -479,7 +479,7 @@ defineExpose({
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="客户端初始化缓冲区大小" prop="decoderInitialBufferSize" label-width="180px">
+          <el-form-item label="客户端初始化缓冲区大小" prop="decoderInitialBufferSize">
             <el-input 
               v-model="config.decoderInitialBufferSize"
               placeholder="请填写初始化缓冲区大小"
@@ -492,7 +492,7 @@ defineExpose({
       </el-row>
       <el-row :gutter="0">
         <el-col :span="12">
-          <el-form-item label="客户端URL参数值最大长度" prop="maxInitialLineLength" label-width="180px">
+          <el-form-item label="客户端URL参数值最大长度" prop="maxInitialLineLength">
             <el-input 
               v-model="config.maxInitialLineLength"
               placeholder="请填写初始化缓冲区大小"
@@ -503,7 +503,7 @@ defineExpose({
           </el-form-item>
         </el-col>
         <el-col :span="12">
-          <el-form-item label="客户端Header最大长度" prop="maxHeaderSize" label-width="180px">
+          <el-form-item label="客户端Header最大长度" prop="maxHeaderSize">
             <el-input 
               v-model="config.maxHeaderSize"
               placeholder="请填写客户端Header最大长度"
@@ -516,7 +516,7 @@ defineExpose({
       </el-row>
       <el-row :gutter="0">
         <el-col :span="12">
-          <el-form-item label="客户端开启keepAlive" prop="keepAlive" label-width="180px">
+          <el-form-item label="客户端开启keepAlive" prop="keepAlive">
             <el-select
               v-model="config.keepAlive"
               placeholder="请选选择是否开启"

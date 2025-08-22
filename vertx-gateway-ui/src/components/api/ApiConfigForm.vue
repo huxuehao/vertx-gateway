@@ -313,7 +313,7 @@ defineExpose({
       :rules="rules"
       :model="config"
       label-position="right"
-      label-width="120px">
+      label-width="150px">
     <div v-show="active === 0">
       <el-row :gutter="0">
         <el-col :span="12">
@@ -557,7 +557,7 @@ defineExpose({
               border
             >
               <el-table-column type="index" label="#" width="40px" align="center"></el-table-column>
-              <el-table-column label="位置" width="100px" align="center" prop="position" :render-header="addReadStar">
+              <el-table-column label="位置" width="120px" align="center" prop="position" :render-header="addReadStar">
                 <template #default="scope">
                   <el-form-item
                     label-width="0"
@@ -589,7 +589,7 @@ defineExpose({
                   </el-form-item>
                 </template>
               </el-table-column>
-              <el-table-column label="类型" width="100px" align="center" prop="type" :render-header="addReadStar">
+              <el-table-column label="类型" width="120px" align="center" prop="type" :render-header="addReadStar">
                 <template #default="scope">
                   <el-form-item
                     label-width="0"
