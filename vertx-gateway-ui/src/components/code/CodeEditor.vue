@@ -159,7 +159,7 @@ const handleClose = () => {
   width: 100vw;
   text-align: right;
   background-color: #282c34; 
-  height: 40px; 
+  height: 45px;
   padding: 10px 10px 0 0 ;
   position: relative;
 }
@@ -172,7 +172,7 @@ const handleClose = () => {
 }
 .code-box {
   background-color: #282c34;
-  height: calc(100vh - 40px);
+  height: calc(100vh - 45px);
   overflow: auto;
   position: relative;
 }
@@ -184,7 +184,7 @@ const handleClose = () => {
 }
 
 .cm-editor {
-  height: calc(100vh - 40px);
+  height: calc(100vh - 45px);
   font-size: 16px;
   letter-spacing: 1px;
 }

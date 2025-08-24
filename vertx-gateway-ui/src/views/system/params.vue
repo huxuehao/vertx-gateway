@@ -202,7 +202,7 @@ const handleEdit = (row: any) => {
 <template>
   <div style="height: 100%">
     <!-- 按钮区域-->
-    <el-row class="button-box">
+    <el-row class="button-box" style="margin-top: 0">
       <el-col :span="16">
         <el-button
           v-permission="'params_add'"
@@ -221,13 +221,12 @@ const handleEdit = (row: any) => {
         </el-button>
       </el-col>
       <el-col :span="8" style="text-align: right">
-        <el-button icon="RefreshRight" @click="handleSearch" title="刷新"
-          >刷新</el-button
-        >
+        <el-button icon="RefreshRight" @click="handleSearch" title="刷新">刷新</el-button>
       </el-col>
     </el-row>
     <!-- 列表区域 -->
-    <div class="data-list" :style="[{ height: 'calc(100vh - 165px)' }]">
+    <div class="data-list"
+         :style="[{ height: 'calc(100% - var(--table-hg-150) + 5px)' }]">>
       <el-table
         :stripe="true"
         :data="dataList"

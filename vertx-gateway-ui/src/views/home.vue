@@ -28,7 +28,7 @@ const getTimePeriod = () => {
   <div class="container">
     <div class="left-section">
       <h1>{{ getTimePeriod() }}好, {{ userInfo.nickname || userInfo.name || userInfo.account }}</h1>
-      <h2>欢迎使用阡陌网关-Qianmo Gateway</h2>
+      <h2>欢迎使用API网关框架-Vertx Gateway</h2>
       <div class="data-container">
         <div class="data-item">
             <span class="amount">1,200,000</span> 

@@ -41,11 +41,11 @@ const handelLogout = () => {
     popper-style="box-shadow: rgb(14 18 22 / 35%) 0px 10px 38px -10px, rgb(14 18 22 / 20%) 0px 10px 20px -15px; padding:20px;"
   >
     <template #reference>
-      <el-avatar src="/src/assets/images/user.png" />
+      <el-avatar src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" />
     </template>
     <template #default>
       <div>
-        <el-avatar src="/src/assets/images/user.png" style="margin-bottom: 8px" />
+        <el-avatar src="https://cube.elemecdn.com/3/7c/3ea6beec64369c2642b92c6726f1epng.png" style="margin-bottom: 8px" />
         <div>
           <el-row>
             <el-col :span="12">
