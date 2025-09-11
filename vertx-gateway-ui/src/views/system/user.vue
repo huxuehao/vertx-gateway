@@ -17,6 +17,7 @@ import {
 } from "@/api/user";
 import UserRoleConfig from "@/components/user/UserRoleConfig.vue";
 import { saveUserRole } from "@/api/role";
+import md5 from 'js-md5';
 
 const prop = {
   value: "id",
@@ -178,6 +179,7 @@ const handleAddDo = () => {
   form.value.validate((valid: any) => {
     if (valid) {
       stopBtn.value = true;
+      formData.value.password = md5(formData.value.password)
       if (mode.value === "add") {
         userAdd(formData.value)
           .then(() => {
@@ -316,10 +318,11 @@ const handleResetPwd = (rows: any) => {
     type: "warning",
   }).then(() => {
     loading.value = true;
-    userResetPwd(rows.map((item: any) => item.id))
+    const pwd = "Hanj@user123.com";
+    userResetPwd(rows.map((item: any) => item.id), md5(pwd))
       .then(() => {
         ElMessage({
-          message: "操作成功",
+          message: `操作成功，初始密码是：${pwd}`,
           type: "success",
           plain: true,
         });
@@ -765,8 +768,8 @@ const handleUserRoleSave = () => {
         </el-col>
         <el-col :span="12">
           <el-form-item label="是否有效" prop="valid">
-            <!-- <el-switch 
-              v-model="formData.valid" 
+            <!-- <el-switch
+              v-model="formData.valid"
               style="--el-switch-on-color: #13ce66; --el-switch-off-color: #ff4949"
               active-text="有效"
               inactive-text="无效"

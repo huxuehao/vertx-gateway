@@ -89,13 +89,13 @@ public class UserController {
     }
 
     @PreAuthorize("@ps.hasPermission('post::user:resetPwd')")
-    @PostMapping(value = "/resetPwd", name = "重置密码")
-    public R<?> resetPwd(@RequestBody List<Long> ids) {
+    @PostMapping(value = "/resetPwd/{pwd}", name = "重置密码")
+    public R<?> resetPwd(@RequestBody List<Long> ids, @PathVariable("pwd") String pwd) {
         UpdateWrapper<User> uw = new UpdateWrapper<>();
         uw.in("id", ids);
-        uw.set("password", EncryptionUtil.md5("Hanj@user123.com"));
+        uw.set("password", EncryptionUtil.md5(pwd));
         userService.update(uw);
-        return R.fail(202, "初始密码Hanj@user123.com");
+        return R.success("");
     }
 
     @PreAuthorize("@ps.hasPermission('post::user:update')")

@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue'
 import { selectCurrentUserInfo, useRePwd} from '@/api/user';
 import { ElMessage } from 'element-plus';
+import md5 from 'js-md5';
 
 /**
  * 修改密码
@@ -55,7 +56,12 @@ const submitRePwd = () => {
   formPwd.value.validate((valid: any) => {
     if(valid) {
       loading.value = true
-      useRePwd(pwdFormData.value).then(() => {
+      const rePwd = {
+        oldPwd: md5(pwdFormData.value.oldPwd),
+        newPwd: md5(pwdFormData.value.newPwd),
+        newRepwd: md5(pwdFormData.value.newRepwd),
+      }
+      useRePwd(rePwd).then(() => {
         pwdFormData.value = {}
         ElMessage({
           message: "操作成功",

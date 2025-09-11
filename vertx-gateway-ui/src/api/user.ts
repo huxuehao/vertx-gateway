@@ -55,9 +55,9 @@ export const userValid = (ids: string[]) => {
   });
 };
 
-export const userResetPwd = (ids: string[]) => {
+export const userResetPwd = (ids: string[], pwd: string) => {
   return request({
-    url: "/user/resetPwd",
+    url: `/user/resetPwd/${pwd}`,
     method: "post",
     headers: {
       unrepeat: true

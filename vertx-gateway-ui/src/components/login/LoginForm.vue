@@ -4,6 +4,7 @@ import { reactive, ref, watch } from "vue";
 import { useUserStore } from "@/stores/user";
 import DragVerify from "./DragVerify.vue";
 import setting from '@/config/setting'
+import md5 from 'js-md5';
 
 const userStore = useUserStore();
 
@@ -49,7 +50,7 @@ const handelSubmit = (formEl: FormInstance | undefined) => {
       userStore
         .doLogin({
           account: passwordForm.account.trim(),
-          password: passwordForm.password,
+          password: md5(passwordForm.password),
         })
         .then(() => {
           window.open(`/${setting.baseUrl}/#/`, '_self')
