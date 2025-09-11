@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { nextTick, onMounted, reactive, ref } from "vue";
+import {nextTick, onMounted, reactive, ref} from "vue";
 import CodeEditor from "../code/CodeEditor.vue";
-import { formatDate, formatJSON } from "@/utils/tools"
+import {formatDate} from "@/utils/tools"
 
 const props = defineProps({
   data: {
@@ -55,6 +55,30 @@ const showQueryParams = () => {
   dialogProp.visible = true
 };
 
+// 查看请求Body
+const showReqBody = () => {
+  const reqBody =  config.value.reqBody
+  try {
+    logText.value =  JSON.stringify(JSON.parse(reqBody), null, 2)
+  } catch (e) {
+    logText.value = reqBody
+  }
+  dialogProp.title = "请求Body"
+  dialogProp.visible = true
+};
+
+// 查看响应Body
+const showRespBody = () => {
+  const respBody = config.value.respBody
+  try {
+    logText.value =  JSON.stringify(JSON.parse(respBody), null, 2)
+  } catch (e) {
+    logText.value = respBody
+  }
+  dialogProp.title = "响应Body"
+  dialogProp.visible = true
+};
+
 // 查看错误日志
 const showErrorLog = () => {
   logText.value =  config.value.errorContent
@@ -104,6 +128,8 @@ const closeDrawer = () => {
           <el-button type="primary" @click="showHeaderParams()">查看Header参数</el-button>
           <el-button type="primary" @click="showPathParams()">查看Path参数</el-button>
           <el-button type="primary" @click="showQueryParams()">查看Query参数</el-button>
+          <el-button type="primary" @click="showReqBody()">查看请求Body</el-button>
+          <el-button type="success" @click="showRespBody()">查看响应Body</el-button>
         </el-form-item>
       </el-col>
     </el-row>
