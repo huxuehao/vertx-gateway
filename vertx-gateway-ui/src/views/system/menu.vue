@@ -500,13 +500,13 @@ const clickRemoveParams = (index: number) => {
       >
         <el-table-column
           type="selection"
-          width="40"
+          width="50"
           align="center"
         ></el-table-column>
         <el-table-column
           label="#"
           type="index"
-          width="40"
+          width="50"
           align="center"
         ></el-table-column>
         <el-table-column label="菜单名称" prop="name" show-overflow-tooltip>

@@ -242,13 +242,13 @@ const handleEdit = (row: any) => {
       >
         <el-table-column
           type="selection"
-          width="40"
+          width="50"
           align="center"
         ></el-table-column>
         <el-table-column
           label="#"
           type="index"
-          width="40"
+          width="50"
           align="center"
         ></el-table-column>
         <el-table-column label="名称" prop="paramName"> </el-table-column>
