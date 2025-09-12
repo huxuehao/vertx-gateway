@@ -53,7 +53,10 @@ const handelSubmit = (formEl: FormInstance | undefined) => {
           password: md5(passwordForm.password),
         })
         .then(() => {
-          window.open(`/${setting.baseUrl}/#/`, '_self')
+          window.location.href = `/${setting.baseUrl}/#/`;
+          setTimeout(() => {
+            location.reload();
+          }, 0);
         })
     }
   });
