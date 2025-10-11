@@ -56,6 +56,11 @@
                 <artifactId>vertx-gateway-core-api</artifactId>
                 <version>${parent.version}</version>
             </dependency>
+            <dependency>
+                <groupId>com.gateway</groupId>
+                <artifactId>vertx-gateway-params</artifactId>
+                <version>${parent.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 </project>

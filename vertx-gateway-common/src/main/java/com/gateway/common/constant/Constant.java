@@ -14,6 +14,7 @@ public class Constant {
     public static final String API_AUTH_CACHE_PRE = "vertx:gateway:user:api:auth:code:";
     /* token存活时间（ms）*/
     public static final Long TOKEN_LIVE_TIME = 10800000L;
+    public static final Integer LOG_SAVE_DAYS = 30;
     public static final String SALT = "33453459278276B306C3E5E05A371FF9";
     public static final String VERTX_GATEWAY_ID = "VERTX_GATEWAY_ID";
     public static final String VERTX_GATEWAY_DEFAULT_ID = UUID.randomUUID().toString().replace("-","");

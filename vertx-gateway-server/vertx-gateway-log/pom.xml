@@ -21,5 +21,9 @@
             <groupId>com.gateway</groupId>
             <artifactId>vertx-gateway-common</artifactId>
         </dependency>
+        <dependency>
+            <groupId>com.gateway</groupId>
+            <artifactId>vertx-gateway-params</artifactId>
+        </dependency>
     </dependencies>
 </project>
