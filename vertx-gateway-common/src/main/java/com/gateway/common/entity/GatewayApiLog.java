@@ -23,9 +23,9 @@ import java.util.Date;
 @Data
 @TableName(DBConst.GATEWAY_API_LOG)
 public class GatewayApiLog implements Serializable {
-    @TableId(value = "id", type = IdType.ASSIGN_ID)
+    @TableId(value = "id", type = IdType.AUTO)
     @JsonSerialize(using = ToStringSerializer.class)
-    private Integer id;
+    private Long id;
 
     @JsonSerialize(using = ToStringSerializer.class)
     @QueryDefine(condition = QueryCondition.EQ)

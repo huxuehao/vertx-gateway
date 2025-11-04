@@ -97,7 +97,7 @@ CREATE TABLE `gateway_api_log`  (
                                     `error_content` text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '错误内容',
                                     `create_time` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
                                     PRIMARY KEY (`id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 1535741955 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '网关API日志' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '网关API日志' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of gateway_api_log
