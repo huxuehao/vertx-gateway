@@ -98,33 +98,32 @@ public class RouteClientHandler extends RouteHandler {
                         Pump respPump = Pump.pump(resp, rct.response());
                         respPump.start();
 
-                        // 代理响应异常处理器
-                        resp.exceptionHandler(e -> {
-                            logger.error("代理响应传输发生了异常:" + e);
-                            respPump.stop();
-                            rct.response().end(); // 结束原始响应
+                        // 日志采集 - 异步获取响应体
+                        resp.bodyHandler(bodyBuffer -> {
+                            // 日志采集
+                            log.setStatus(1);
+                            log.setRespBody(bodyBuffer.toString());
                         });
 
                         // 代理响应结束处理器
                         resp.endHandler(end -> {
                             logger.info("代理响应传输完成");
                             rct.response().end(); // 结束原始响应
+                            ConcurrentLogProducer.pushLog(log);
                         });
 
-                        // 日志采集 - 异步获取响应体
-                        resp.bodyHandler(bodyBuffer -> {
-                            // 日志采集
-                            log.setStatus(1);
-                            log.setRespBody(bodyBuffer.toString());
-                            ConcurrentLogProducer.pushLog(log);
+                        // 代理响应异常处理器
+                        resp.exceptionHandler(e -> {
+                            logger.error("代理响应传输发生了异常:" + e);
+                            respPump.stop();
+                            rct.response().end(); // 结束原始响应
                         });
                     })
                     .onFailure(err -> {
                         logger.error("请求转发失败，重试次数用尽: " + err.getMessage());
                         rct.response().setStatusCode(502).end("请求转发失败");
-
                         // 日志采集
-                        log.setStatus(1);
+                        log.setStatus(0);
                         log.setErrorContent(MeUtil.catchThrowableStackInfo(err));
                         ConcurrentLogProducer.pushLog(log);
                     });
