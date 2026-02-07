@@ -45,4 +45,4 @@ mybatis-plus:
 # 日志级别
 logging:
   level:
-    com.gateway: debug #off
+    com.hxh: debug #off

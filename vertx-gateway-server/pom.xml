@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.gateway</groupId>
+        <groupId>com.hxh</groupId>
         <artifactId>vertx-gateway</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -27,37 +27,37 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.gateway</groupId>
+                <groupId>com.hxh</groupId>
                 <artifactId>vertx-gateway-common</artifactId>
                 <version>${parent.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.gateway</groupId>
+                <groupId>com.hxh</groupId>
                 <artifactId>vertx-gateway-classify</artifactId>
                 <version>${parent.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.gateway</groupId>
+                <groupId>com.hxh</groupId>
                 <artifactId>vertx-gateway-application</artifactId>
                 <version>${parent.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.gateway</groupId>
+                <groupId>com.hxh</groupId>
                 <artifactId>vertx-gateway-api</artifactId>
                 <version>${parent.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.gateway</groupId>
+                <groupId>com.hxh</groupId>
                 <artifactId>vertx-gateway-core-app</artifactId>
                 <version>${parent.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.gateway</groupId>
+                <groupId>com.hxh</groupId>
                 <artifactId>vertx-gateway-core-api</artifactId>
                 <version>${parent.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.gateway</groupId>
+                <groupId>com.hxh</groupId>
                 <artifactId>vertx-gateway-params</artifactId>
                 <version>${parent.version}</version>
             </dependency>

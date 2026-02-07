@@ -1,0 +1,110 @@
+package com.hxh.gateway.security;
+
+import com.alibaba.fastjson2.JSON;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
+import com.hxh.gateway.auth.service.MenuApiService;
+import com.hxh.gateway.auth.service.RoleAuthService;
+import com.hxh.gateway.auth.service.RoleService;
+import com.hxh.gateway.common.constant.Constant;
+import com.hxh.gateway.common.entity.MenuApi;
+import com.hxh.gateway.common.entity.Role;
+import com.hxh.gateway.common.entity.RoleAuth;
+import com.hxh.gateway.common.util.AuthUtil;
+import com.hxh.gateway.common.util.CacheUtil;
+import org.springframework.stereotype.Component;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
+
+/**
+ * 描述：API权限控制实现
+ *
+ * @author huxuehao
+ **/
+@Component("ps")
+public class PermissionService {
+    private static final List<String> WHITE_LIST = new ArrayList<String>(){{
+        add("post::user:login");
+        add("get::user:refresh-token");
+    }};
+    private final CacheUtil cacheUtil;
+    private final RoleService roleService;
+    private final MenuApiService menuApiService;
+    private final RoleAuthService roleAuthService;
+
+    public PermissionService(CacheUtil cacheUtil, RoleService roleService, MenuApiService menuApiService, RoleAuthService roleAuthService) {
+        this.cacheUtil = cacheUtil;
+        this.roleService = roleService;
+        this.menuApiService = menuApiService;
+        this.roleAuthService = roleAuthService;
+    }
+
+    /**
+     * 验证当前用户是否有当前接口的权限
+     * @param permissionCode 接口权限编号
+     */
+    public boolean hasPermission(String permissionCode) {
+        // 放行登录接口
+        if (WHITE_LIST.contains(permissionCode)) {
+            return true;
+        }
+
+        // 尝试从缓存中获取
+        Object authCodes = cacheUtil.get(Constant.API_AUTH_CACHE_PRE + AuthUtil.getUserId());
+        if (authCodes != null) {
+            List<String> authCodeList = JSON.parseArray(authCodes.toString(), String.class);
+            return authCodeList.contains(permissionCode);
+        }
+
+        // 获取用户角色
+        List<String> userRole = roleService.getUserRole(AuthUtil.getUserId());
+
+        // 获取有效的用户角色
+        QueryWrapper<Role> roleQw = new QueryWrapper<>();
+        roleQw.in("id", userRole);
+        roleQw.eq("valid", 1);
+        roleQw.eq("del_flag", 0);
+        List<Role> roleList = roleService.list(roleQw);
+        userRole = roleList.stream().map(Role::getId).map(Objects::toString).collect(Collectors.toList());
+
+        if (userRole.isEmpty()) {
+            return false;
+        }
+
+        // 处理超级管理员角色
+        if (userRole.contains("1111111111111111111")) {
+            QueryWrapper<MenuApi> qw = new QueryWrapper<>();
+            return verifyPermission(permissionCode, qw);
+        }
+
+        // 获取角色配置的API权限
+        QueryWrapper<RoleAuth> authQw = new QueryWrapper<>();
+        authQw.in("role_id", userRole);
+        authQw.eq("auth_type", 3);
+        List<RoleAuth> auths = roleAuthService.list(authQw);
+        if (auths == null || auths.isEmpty()) {
+            return false;
+        }
+
+        QueryWrapper<MenuApi> qw = new QueryWrapper<>();
+        qw.in("id", auths.stream().map(RoleAuth::getAuthId).collect(Collectors.toList()));
+        return verifyPermission(permissionCode, qw);
+    }
+
+    /**
+     * 验证权限
+     */
+    private boolean verifyPermission(String permissionCode, QueryWrapper<MenuApi> qw) {
+        qw.eq("valid", 1);
+        qw.eq("del_flag", 0);
+        List<MenuApi> validApiList = menuApiService.list(qw);
+        List<String> validApis = validApiList.stream().map(MenuApi::getCode).collect(Collectors.toList());
+
+        // 保存缓存，有效期24小时
+        cacheUtil.set(Constant.API_AUTH_CACHE_PRE + AuthUtil.getUserId(), JSON.toJSONString(validApis), 1000 * 60 * 60 * 24);
+
+        return validApis.contains(permissionCode);
+    }
+}
