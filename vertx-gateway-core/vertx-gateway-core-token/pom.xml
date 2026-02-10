@@ -2,7 +2,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
-        <groupId>com.hxh</groupId>
+        <groupId>com.hxh.gateway</groupId>
         <artifactId>vertx-gateway-core</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
@@ -18,11 +18,11 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.hxh</groupId>
+            <groupId>com.hxh.gateway</groupId>
             <artifactId>vertx-gateway-common</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.hxh</groupId>
+            <groupId>com.hxh.gateway</groupId>
             <artifactId>vertx-gateway-core-api</artifactId>
         </dependency>
     </dependencies>
