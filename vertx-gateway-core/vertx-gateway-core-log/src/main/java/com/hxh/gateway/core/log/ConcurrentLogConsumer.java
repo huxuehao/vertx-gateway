@@ -1,14 +1,17 @@
 package com.hxh.gateway.core.log;
 
 import com.hxh.gateway.common.entity.GatewayApiLog;
-import com.hxh.gateway.log.mapper.GatewayApiLogMapper;
+import com.hxh.gateway.log.service.GatewayApiLogService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PreDestroy;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 /**
@@ -23,12 +26,16 @@ public class ConcurrentLogConsumer {
     private final AtomicBoolean running = new AtomicBoolean(false);
     private volatile ExecutorService consumerExecutor;
 
+    /** 批量消费的最大条数 */
+    private static final int BATCH_SIZE = 200;
+    /** 队列为空时的等待时间（毫秒），避免CPU空转 */
+    private static final int POLL_TIMEOUT_MS = 500;
+
     private final BlockingQueue<GatewayApiLog> queue;
-    private final GatewayApiLogMapper gatewayApiLogMapper;
+    private final GatewayApiLogService gatewayApiLogService;
 
-
-    public ConcurrentLogConsumer(GatewayApiLogMapper gatewayApiLogMapper) {
-        this.gatewayApiLogMapper = gatewayApiLogMapper;
+    public ConcurrentLogConsumer(GatewayApiLogService gatewayApiLogService) {
+        this.gatewayApiLogService = gatewayApiLogService;
         this.queue = ConcurrentLogProducer.getQueue();
     }
 
@@ -54,20 +61,56 @@ public class ConcurrentLogConsumer {
     }
 
     /**
-     * 执行日志消费
+     * 执行日志消费 - 批量模式
+     * 循环从队列中取数据，积攒到 BATCH_SIZE 或等待超时后，一次性批量插入
      */
     private void consumeLog() {
+        List<GatewayApiLog> batch = new ArrayList<>(BATCH_SIZE);
+
         while (!Thread.currentThread().isInterrupted() && running.get()) {
             try {
-                GatewayApiLog apiLog = queue.take();
-                try {
-                    gatewayApiLogMapper.insert(apiLog);
-                } catch (Exception e) {
-                    log.error("日志插入失败: {}", e.getMessage());
+                // 先阻塞取一条，保证队列为空时不会CPU空转
+                GatewayApiLog first = queue.poll(POLL_TIMEOUT_MS, TimeUnit.MILLISECONDS);
+                if (first != null) {
+                    batch.add(first);
+                }
+
+                // 非阻塞地继续取，积攒到 BATCH_SIZE 或队列为空为止
+                queue.drainTo(batch, BATCH_SIZE - batch.size());
+
+                if (!batch.isEmpty()) {
+                    doBatchInsert(batch);
+                    batch.clear();
                 }
             } catch (InterruptedException e) {
                 Thread.currentThread().interrupt();
+                // 退出前尝试把剩余日志入库
+                if (!batch.isEmpty()) {
+                    doBatchInsert(batch);
+                }
                 break;
+            }
+        }
+    }
+
+    /**
+     * 执行批量插入，失败时降级为逐条插入以保证尽可能多的日志入库
+     */
+    private void doBatchInsert(List<GatewayApiLog> batch) {
+        if (batch.isEmpty()) {
+            return;
+        }
+        try {
+            gatewayApiLogService.saveBatch(batch, BATCH_SIZE);
+        } catch (Exception e) {
+            log.error("批量插入日志失败(batchSize={})，降级为逐条插入: {}", batch.size(), e.getMessage());
+            // 降级：逐条插入，尽量挽救更多日志
+            for (GatewayApiLog apiLog : batch) {
+                try {
+                    gatewayApiLogService.save(apiLog);
+                } catch (Exception ex) {
+                    log.error("日志插入失败: {}", ex.getMessage());
+                }
             }
         }
     }

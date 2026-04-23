@@ -26,7 +26,7 @@
     <mybatis-plus.version>3.5.2</mybatis-plus.version>
     <spring-redisson.version>3.17.3</spring-redisson.version>
     <mysql.version>8.0.16</mysql.version>
-    <druid.version>1.1.9</druid.version>
+    <druid.version>1.2.20</druid.version>
     <jwt.version>3.4.0</jwt.version>
     <jjwt.version>0.9.1</jjwt.version>
     <fastjson.version>2.0.16</fastjson.version>
@@ -75,7 +75,7 @@
       </dependency>
       <dependency>
         <groupId>com.alibaba</groupId>
-        <artifactId>druid</artifactId>
+        <artifactId>druid-spring-boot-starter</artifactId>
         <version>${druid.version}</version>
       </dependency>
       <dependency>

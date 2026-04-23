@@ -12,26 +12,47 @@ spring:
     url: jdbc:mysql://localhost:3306/vertx-gateway?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=UTC
     username: root
     password: root123123
-    # 初始连接数
-    initial-size: 5
-    # 最小连接池数量
-    min-idle: 10
-    # 最大连接池数量
-    max-active: 20
-    # 最大等待时间
-    max-wait: 60000
-    # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
-    time-between-eviction-runs-millis: 60000
-    # 配置一个连接在池中最小生存的时间，单位是毫秒
-    min-evictable-idle-time-millis: 300000
-    # 配置一个连接在池中最大生存的时间，单位是毫秒
-    max-evictable-idle-time-millis: 900000
-    # 检查连接是否有效
-    validation-query: SELECT 1 FROM DUAL
-    test-while-idle: true
-    test-on-borrow: false
-    test-on-return: false
-    filters: stat,wall
+    druid:
+      # ===== 连接池大小 =====
+      initial-size: 10
+      min-idle: 10
+      max-active: 50
+      max-wait: 3000
+
+      # ===== 连接保活与逐出（核心：防防火墙切断） =====
+      time-between-eviction-runs-millis: 30000
+      min-evictable-idle-time-millis: 240000
+      max-evictable-idle-time-millis: 900000
+      keep-alive: true
+
+      # ===== 连接有效性检测 =====
+      validation-query: SELECT 1
+      test-while-idle: true
+      test-on-borrow: true
+      test-on-return: false
+
+      # ===== MySQL优化 =====
+      pool-prepared-statements: false
+      connection-properties: druid.stat.mergeSql=true;druid.stat.slowSqlMillis=15000
+      remove-abandoned: true
+      remove-abandoned-timeout: 300
+      log-abandoned: true
+
+      # ===== 内置Filter =====
+      filter:
+        stat:
+          enabled: true
+          log-slow-sql: true
+          slow-sql-millis: 15000
+        wall:
+          enabled: true
+          multi-statement-allow: true
+
+      # Web监控页面（仅开发环境开启）
+      web-stat-filter:
+        enabled: true
+      stat-view-servlet:
+        enabled: true
 
 # mybatis-plus配置
 mybatis-plus:
